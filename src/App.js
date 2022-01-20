@@ -3,10 +3,12 @@ import './App.css';
 import { ListOfGifs } from './components/ListOfGifs'
 
 function App() {
+  const [keyword, setKeyword] = useState('panda')
   return (
     <div className="App">
       <section className='App-content'>
-        <ListOfGifs keyword='Ocean' />
+        <button onClick={() => setKeyword('mapache')}>cambiar keyword</button>
+        <ListOfGifs keyword={keyword} />
       </section>
     </div>
   );

@@ -6,8 +6,9 @@ export function ListOfGifs({ keyword }) {
     const [gifs, setGifs] = useState([]);
 
     useEffect(() => {
-        getGifs(keyword).then(gifs => setGifs(gifs))
-    }, [])
+        getGifs( keyword )
+            .then(gifs => setGifs(gifs))
+    }, [keyword])
     return gifs.map(({ title, id, url }) => 
         <Gifs
             title={title} 
