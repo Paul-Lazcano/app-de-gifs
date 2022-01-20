@@ -1,23 +1,35 @@
-import logo from './logo.svg';
+import React, { useEffect ,useState, Fragment } from 'react';
 import './App.css';
+import { getGifs } from './services/getGifs'
+import { Gifs } from './components/Gifs'
 
 function App() {
+  const [gifs, setGifs] = useState([]);
+
+  useEffect(() => {
+    getGifs('batman').then(gifs => setGifs(gifs))
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <section className='App-content'>
+        <h1>Busca Giffs y diviertete!</h1>
+        <input type='text' placeholder='Busca lo que quieras' id='input-searcher'></input>
+        <button
+          onClick={() => {
+            const keyword = document.getElementById('input-searcher').value;
+            getGifs(keyword).then(gifs => setGifs(gifs));
+          }}
         >
-          Learn React
-        </a>
-      </header>
+        Buscar
+        </button>
+        <span>Puede que tarde un poco en cargar...</span>
+        {
+          gifs.map(({ title, id, url }) => {
+            return <Gifs title={title} key={id} url={url}/>
+          })
+        }
+      </section>
     </div>
   );
 }
