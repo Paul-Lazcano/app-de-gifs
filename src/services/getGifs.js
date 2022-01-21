@@ -2,7 +2,7 @@ const API_KEY = 'QUs47DHXA45ZQFf1p6NDpvaEIhxqsQHQ';
 
 export const getGifs = (keyword = '') => {
     const API_URL = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${keyword}&limit=25&offset=0&rating=g&lang=en`;
-
+    
     return fetch(API_URL)
       .then(response => response.json())
       .then(({ data }) => {
