@@ -1,11 +1,10 @@
 import React, { useEffect ,useState, Fragment } from 'react';
 import './App.css';
 import { HomeLink } from "./components/HomeLink";
-import { ListOfGifs } from './components/ListOfGifs'
 import { Home } from "./pages/Home/Home";
-import { Link, Route } from "wouter";
+import { Route } from "wouter";
+import { SearchResults } from "./pages/SearchResults/SearchResults";
 function App() {
-  const [keyword, setKeyword] = useState('');
   
   return (
     <div className="App">
@@ -18,7 +17,7 @@ function App() {
           />
           <Route 
             path="/search/:keyword" 
-            component={ListOfGifs}
+            component={SearchResults}
           />
         </div>
       </section>

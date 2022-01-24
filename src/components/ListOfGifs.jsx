@@ -1,27 +1,10 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React from 'react';
 import { Gifs } from "./Gifs";
-import { getGifs } from "../services/getGifs";
-import { HomeLink } from "./HomeLink";
-export function ListOfGifs({ params }) {
-    const { keyword } = params;
 
-    const [loading, setLoading] = useState(false);
-
-    const [gifs, setGifs] = useState([]);
-
-    useEffect(() => {
-        setLoading(true)
-        getGifs( keyword )
-            .then(gifs => {
-                setGifs(gifs);
-                setLoading(false);
-            })
-    }, [keyword])
-
-    if (loading) return <i>꩜</i>
+export function ListOfGifs({ gifs }) {
     
-    return <div className="list-of-gifs">
-        <h3 className='list-of-gifs__title'>Gifs de {keyword.replace(':', '')}</h3>
+    return (
+        <div className="list-of-gifs">
         {
         gifs.map(({ title, id, url }) => 
         <Gifs
@@ -31,5 +14,6 @@ export function ListOfGifs({ params }) {
             id={id}
         />)
         }
-    </div> 
+        </div> 
+    )
 }
